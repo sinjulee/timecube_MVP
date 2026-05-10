@@ -7,6 +7,7 @@ import {
 } from 'lucide-react';
 import {
   CircuitBreakerState,
+  CorePressure,
   HegemonyScore,
   Hypothesis,
   MacroScore,
@@ -42,6 +43,38 @@ export const mockSyncStatus: SyncStatus = {
   integrity: '99.9%',
   reliability: 'High',
 };
+
+
+export const mockCorePressures: CorePressure[] = [
+  {
+    id: 'cp1',
+    title: 'Funding markets tightening ahead of roll-over window',
+    pressureType: 'liquidity',
+    severity: 'high',
+    summary: 'Short-term funding conditions are tightening in major dollar corridors.',
+  },
+  {
+    id: 'cp2',
+    title: 'Sticky services inflation remains above policy comfort zone',
+    pressureType: 'inflation',
+    severity: 'medium',
+    summary: 'Core services prices are cooling slowly, limiting near-term easing confidence.',
+  },
+  {
+    id: 'cp3',
+    title: 'Cross-bloc rhetoric increasing strategic policy uncertainty',
+    pressureType: 'hegemony',
+    severity: 'medium',
+    summary: 'Escalating policy signaling is raising volatility in geopolitical risk pricing.',
+  },
+  {
+    id: 'cp4',
+    title: 'Equity breadth divergence hints at fragile risk appetite',
+    pressureType: 'market',
+    severity: 'low',
+    summary: 'Index strength is concentrated, while broad participation remains uneven.',
+  },
+];
 
 export const mockHypotheses: Hypothesis[] = [
   {

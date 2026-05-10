@@ -16,6 +16,14 @@ export type SignalStatus =
 
 export type CircuitBreakerState = 'closed' | 'open' | 'half_open';
 
+export interface CorePressure {
+  id: string;
+  title: string;
+  pressureType: 'liquidity' | 'inflation' | 'hegemony' | 'market';
+  severity: 'low' | 'medium' | 'high';
+  summary: string;
+}
+
 export interface Hypothesis {
   id: string;
   title: string;
