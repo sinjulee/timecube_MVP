@@ -1,6 +1,7 @@
 import {
   mockCorePressures,
   mockHegemonyScore,
+  mockHegemonyReactions,
   mockHypotheses,
   mockInflationPressures,
   mockLiquidityMetrics,
@@ -11,6 +12,7 @@ import {
   mockRecentSignals,
   mockRegionalReactions,
   mockRiskAssetFlows,
+  mockSettlementPressures,
   mockSyncStatus,
 } from '../../data/timecubeMockData';
 import { TimeCubeSection } from '../../types/timecube';
@@ -32,6 +34,13 @@ const corePressureBadgeStyles: Record<'low' | 'medium' | 'high', string> = {
   low: 'bg-emerald-50 text-emerald-700 border-emerald-200',
   medium: 'bg-amber-50 text-amber-700 border-amber-200',
   high: 'bg-rose-50 text-rose-700 border-rose-200',
+};
+
+const stanceBadgeStyles: Record<'defensive' | 'expansive' | 'hedging' | 'neutral', string> = {
+  defensive: 'bg-blue-50 text-blue-700 border-blue-200',
+  expansive: 'bg-violet-50 text-violet-700 border-violet-200',
+  hedging: 'bg-amber-50 text-amber-700 border-amber-200',
+  neutral: 'bg-slate-50 text-slate-700 border-slate-200',
 };
 
 interface TimeCubeDashboardProps {
@@ -146,13 +155,58 @@ export default function TimeCubeDashboard({
   if (activeSection === 'HEGEMONY') {
     return (
       <div className='max-w-[1440px] mx-auto space-y-6 pb-12'>
+        <div className='grid grid-cols-1 xl:grid-cols-2 gap-6'>
+          <section className='bg-white border border-tc-line p-8 rounded-xl'>
+            <h2 className='text-lg font-semibold mb-4'>Hegemony Score</h2>
+            <p className='text-sm text-slate-600'>{mockHegemonyScore.actor}</p>
+            <p className='text-4xl font-bold my-2'>{mockHegemonyScore.score}</p>
+            <p className='text-sm'>{mockHegemonyScore.trend}</p>
+          </section>
+          <HegemonyHypotheses data={mockHypotheses} />
+        </div>
+
         <section className='bg-white border border-tc-line p-8 rounded-xl'>
-          <h2 className='text-lg font-semibold mb-4'>Hegemony Score</h2>
-          <p className='text-sm text-slate-600'>{mockHegemonyScore.actor}</p>
-          <p className='text-4xl font-bold my-2'>{mockHegemonyScore.score}</p>
-          <p className='text-sm'>{mockHegemonyScore.trend}</p>
+          <h2 className='text-lg font-semibold mb-4'>Regional Power Reactions</h2>
+          <div className='grid grid-cols-1 xl:grid-cols-2 gap-4'>
+            {mockHegemonyReactions.map((reaction) => (
+              <article key={reaction.id} className='border border-slate-200 rounded-lg p-4 space-y-2'>
+                <div className='flex items-center justify-between gap-3'>
+                  <div>
+                    <p className='font-semibold'>{reaction.actor}</p>
+                    <p className='text-sm text-slate-500'>{reaction.region}</p>
+                  </div>
+                  <span
+                    className={`text-xs px-2 py-1 rounded-full border font-medium capitalize ${stanceBadgeStyles[reaction.stance]}`}
+                  >
+                    {reaction.stance}
+                  </span>
+                </div>
+                <p className='text-sm text-slate-600'>{reaction.summary}</p>
+                <p className='text-xs text-slate-500'>Relevance score: {reaction.relevanceScore}</p>
+              </article>
+            ))}
+          </div>
         </section>
-        <HegemonyHypotheses data={mockHypotheses} />
+
+        <section className='bg-white border border-tc-line p-8 rounded-xl'>
+          <h2 className='text-lg font-semibold mb-4'>Settlement &amp; Resource Pressure</h2>
+          <div className='grid grid-cols-1 xl:grid-cols-2 gap-4'>
+            {mockSettlementPressures.map((pressure) => (
+              <article key={pressure.id} className='border border-slate-200 rounded-lg p-4 space-y-2'>
+                <div className='flex items-center justify-between gap-2'>
+                  <p className='font-medium'>{pressure.title}</p>
+                  <span
+                    className={`text-xs px-2 py-1 rounded-full border font-medium capitalize ${corePressureBadgeStyles[pressure.severity]}`}
+                  >
+                    {pressure.severity}
+                  </span>
+                </div>
+                <p className='text-xs uppercase tracking-wide text-slate-500'>{pressure.pressureType}</p>
+                <p className='text-sm text-slate-600'>{pressure.summary}</p>
+              </article>
+            ))}
+          </div>
+        </section>
       </div>
     );
   }

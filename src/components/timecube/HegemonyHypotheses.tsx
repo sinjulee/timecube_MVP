@@ -1,2 +1,2 @@
 import { Hypothesis } from '../../types/timecube';
-export default function HegemonyHypotheses({data}:{data:Hypothesis[]}){return <section className='bg-white border border-tc-line p-8 rounded-xl'><h2>Hegemony Hypotheses</h2>{data.map(i=><div key={i.id}>{i.title} {i.total}%</div>)}</section>}
+export default function HegemonyHypotheses({data}:{data:Hypothesis[]}){return <section className='bg-white border border-tc-line p-8 rounded-xl h-full'><h2 className='text-lg font-semibold mb-4'>Dollar Hegemony Hypotheses</h2><div className='space-y-3'>{data.map(i=><div key={i.id} className='border-b pb-2 last:border-b-0'><p className='font-medium'>{i.title}</p><p className='text-sm text-slate-600'>Confidence {i.total}% · Weight {i.weight}</p></div>)}</div></section>}

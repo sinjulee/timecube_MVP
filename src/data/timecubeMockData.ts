@@ -16,6 +16,8 @@ import {
   PipelineStatus,
   RecentSignal,
   RegionalReaction,
+  HegemonyReaction,
+  SettlementPressure,
   RiskAssetFlow,
   InflationPressure,
   SystemHealth,
@@ -211,3 +213,76 @@ export const mockHegemonyScore: HegemonyScore = {
   score: 67,
   trend: 'Stable with mild downside pressure',
 };
+
+export const mockHegemonyReactions: HegemonyReaction[] = [
+  {
+    id: 'hr1',
+    actor: 'United States',
+    region: 'Americas',
+    stance: 'defensive',
+    summary: 'Maintains sanctions architecture and treasury market depth to preserve dollar network effects.',
+    relevanceScore: 82,
+  },
+  {
+    id: 'hr2',
+    actor: 'China',
+    region: 'Asia',
+    stance: 'expansive',
+    summary: 'Expands bilateral settlement rails and commodity invoicing pilots outside dollar channels.',
+    relevanceScore: 78,
+  },
+  {
+    id: 'hr3',
+    actor: 'Europe',
+    region: 'Europe',
+    stance: 'hedging',
+    summary: 'Pursues strategic autonomy while retaining transatlantic liquidity coordination safeguards.',
+    relevanceScore: 69,
+  },
+  {
+    id: 'hr4',
+    actor: 'Middle East',
+    region: 'Middle East',
+    stance: 'neutral',
+    summary: 'Diversifies settlement partners while anchoring energy export optionality to multiple currencies.',
+    relevanceScore: 74,
+  },
+];
+
+export const mockSettlementPressures: SettlementPressure[] = [
+  {
+    id: 'sp1',
+    title: 'Energy settlement diversification pressure',
+    pressureType: 'energy',
+    severity: 'high',
+    summary: 'Oil and LNG contracts are increasingly negotiated with non-USD settlement flexibility clauses.',
+  },
+  {
+    id: 'sp2',
+    title: 'US Treasury demand concentration risk',
+    pressureType: 'treasury',
+    severity: 'medium',
+    summary: 'Foreign official demand is uneven, increasing reliance on domestic and leveraged buyers.',
+  },
+  {
+    id: 'sp3',
+    title: 'Reserve mix rebalancing',
+    pressureType: 'reserve',
+    severity: 'medium',
+    summary: 'Central banks continue gradual diversification toward gold amid geopolitical fragmentation.',
+  },
+  {
+    id: 'sp4',
+    title: 'Stablecoin corridor expansion',
+    pressureType: 'stablecoin',
+    severity: 'low',
+    summary: 'Dollar-backed stablecoins deepen cross-border usage, competing with bank-led settlement rails.',
+  },
+  {
+    id: 'sp5',
+    title: 'Gold and Bitcoin neutral-asset hedge bids',
+    pressureType: 'settlement',
+    severity: 'medium',
+    summary: 'Non-sovereign reserve assets are increasingly used as political-risk hedges in payment planning.',
+  },
+];
