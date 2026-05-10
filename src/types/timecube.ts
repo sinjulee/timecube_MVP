@@ -118,6 +118,15 @@ export interface RegionalReaction {
   status: 'up' | 'flat' | 'down';
 }
 
+export interface InterpretationQueueItem {
+  id: string;
+  observedSignal: string;
+  linkedLayer: 'liquidity' | 'inflation' | 'hegemony' | 'market';
+  possibleCause: string;
+  confidence: number;
+  status: 'observed' | 'analyzing' | 'linked' | 'needs_review';
+}
+
 export interface HegemonyScore {
   actor: string;
   score: number;
