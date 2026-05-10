@@ -2,6 +2,7 @@ import {
   mockHegemonyScore,
   mockHypotheses,
   mockLiquidityMetrics,
+  mockInflationPressures,
   mockMacroScore,
   mockMapEdges,
   mockMapNodes,
@@ -19,6 +20,12 @@ import MacroPressureCard from './MacroPressureCard';
 import PipelineSyncCard from './PipelineSyncCard';
 import RecentSignals from './RecentSignals';
 import TrendChart from './TrendChart';
+
+const inflationPressureBadgeStyles: Record<'low' | 'medium' | 'high', string> = {
+  low: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+  medium: 'bg-amber-50 text-amber-700 border-amber-200',
+  high: 'bg-rose-50 text-rose-700 border-rose-200',
+};
 
 interface TimeCubeDashboardProps {
   activeSection: TimeCubeSection;
@@ -55,6 +62,28 @@ export default function TimeCubeDashboard({ activeSection }: TimeCubeDashboardPr
                 <span className='font-semibold'>
                   {item.value} ({item.change})
                 </span>
+              </div>
+            ))}
+          </div>
+        </section>
+        <section className='bg-white border border-tc-line p-8 rounded-xl'>
+          <h2 className='text-lg font-semibold mb-4'>Inflation Pressure</h2>
+          <div className='space-y-4'>
+            {mockInflationPressures.map((item) => (
+              <div key={item.id} className='border-b pb-3 last:border-b-0'>
+                <div className='flex items-start justify-between gap-3'>
+                  <div>
+                    <p className='font-medium'>{item.indicator}</p>
+                    <p className='text-sm text-slate-600'>Reading: {item.reading}</p>
+                    <p className='text-sm text-slate-600'>Change: {item.change}</p>
+                    <p className='text-sm text-slate-500 mt-1'>{item.interpretation}</p>
+                  </div>
+                  <span
+                    className={`text-xs px-2 py-1 rounded-full border font-medium capitalize ${inflationPressureBadgeStyles[item.pressureLevel]}`}
+                  >
+                    {item.pressureLevel}
+                  </span>
+                </div>
               </div>
             ))}
           </div>

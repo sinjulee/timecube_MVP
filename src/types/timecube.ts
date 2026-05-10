@@ -93,6 +93,15 @@ export interface RiskAssetFlow {
   flow: string;
 }
 
+export interface InflationPressure {
+  id: string;
+  indicator: string;
+  reading: string;
+  change: string;
+  pressureLevel: 'low' | 'medium' | 'high';
+  interpretation: string;
+}
+
 export interface RegionalReaction {
   id: string;
   region: string;
