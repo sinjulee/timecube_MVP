@@ -1,8 +1,9 @@
 import {
+  mockCorePressures,
   mockHegemonyScore,
   mockHypotheses,
-  mockLiquidityMetrics,
   mockInflationPressures,
+  mockLiquidityMetrics,
   mockMacroScore,
   mockMapEdges,
   mockMapNodes,
@@ -27,6 +28,12 @@ const inflationPressureBadgeStyles: Record<'low' | 'medium' | 'high', string> = 
   high: 'bg-rose-50 text-rose-700 border-rose-200',
 };
 
+const corePressureBadgeStyles: Record<'low' | 'medium' | 'high', string> = {
+  low: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+  medium: 'bg-amber-50 text-amber-700 border-amber-200',
+  high: 'bg-rose-50 text-rose-700 border-rose-200',
+};
+
 interface TimeCubeDashboardProps {
   activeSection: TimeCubeSection;
 }
@@ -35,6 +42,29 @@ export default function TimeCubeDashboard({ activeSection }: TimeCubeDashboardPr
   if (activeSection === 'INTELLIGENCE') {
     return (
       <div className='max-w-[1440px] mx-auto space-y-6 pb-12'>
+        <section className='bg-white border border-tc-line p-8 rounded-xl'>
+          <div className='flex items-center justify-between mb-5'>
+            <h2 className='text-lg font-semibold'>Today's Core Pressure</h2>
+            <span className='text-xs uppercase tracking-wide text-slate-500'>User View</span>
+          </div>
+          <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4'>
+            {mockCorePressures.map((pressure) => (
+              <article key={pressure.id} className='border border-slate-200 rounded-lg p-4 space-y-2'>
+                <div className='flex items-center justify-between gap-2'>
+                  <p className='text-sm font-medium capitalize text-slate-500'>{pressure.pressureType}</p>
+                  <span
+                    className={`text-xs px-2 py-1 rounded-full border font-medium capitalize ${corePressureBadgeStyles[pressure.severity]}`}
+                  >
+                    {pressure.severity}
+                  </span>
+                </div>
+                <h3 className='font-semibold leading-snug'>{pressure.title}</h3>
+                <p className='text-sm text-slate-600 line-clamp-2'>{pressure.summary}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
         <div className='grid grid-cols-1 lg:grid-cols-3 gap-6'>
           <DataQualityMonitor data={mockPipelineStatus} />
           <MacroPressureCard data={mockMacroScore} />
