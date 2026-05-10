@@ -16,6 +16,7 @@ import {
   RecentSignal,
   RegionalReaction,
   RiskAssetFlow,
+  InflationPressure,
   SystemHealth,
   SyncStatus,
   LiquidityMetric,
@@ -133,6 +134,33 @@ export const mockRiskAssetFlows: RiskAssetFlow[] = [
   { id: 'rf1', region: 'US', asset: 'NASDAQ 100', flow: '+$2.1B' },
   { id: 'rf2', region: 'EU', asset: 'STOXX 600', flow: '+$0.8B' },
   { id: 'rf3', region: 'APAC', asset: 'HSI', flow: '-$0.6B' },
+];
+
+export const mockInflationPressures: InflationPressure[] = [
+  {
+    id: 'ip1',
+    indicator: 'US Core CPI Nowcast',
+    reading: '3.1% YoY',
+    change: '+0.2pp',
+    pressureLevel: 'high',
+    interpretation: 'Services inflation persistence is re-accelerating short-term pricing pressure.',
+  },
+  {
+    id: 'ip2',
+    indicator: 'EU 5Y5Y Inflation Swap',
+    reading: '2.24%',
+    change: '+0.05pp',
+    pressureLevel: 'medium',
+    interpretation: 'Inflation expectations remain anchored but show mild upside drift.',
+  },
+  {
+    id: 'ip3',
+    indicator: 'Global PPI Composite',
+    reading: '49.8',
+    change: '-0.6',
+    pressureLevel: 'low',
+    interpretation: 'Factory-gate pressures are easing, partially offsetting consumer inflation risk.',
+  },
 ];
 
 export const mockRegionalReactions: RegionalReaction[] = [
