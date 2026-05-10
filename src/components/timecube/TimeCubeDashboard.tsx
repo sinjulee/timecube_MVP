@@ -155,7 +155,7 @@ export default function TimeCubeDashboard({
   if (activeSection === 'HEGEMONY') {
     return (
       <div className='max-w-[1440px] mx-auto space-y-6 pb-12'>
-        <div className='grid grid-cols-1 xl:grid-cols-2 gap-6'>
+        <div className='grid grid-cols-1 lg:grid-cols-2 gap-6'>
           <section className='bg-white border border-tc-line p-8 rounded-xl'>
             <h2 className='text-lg font-semibold mb-4'>Hegemony Score</h2>
             <p className='text-sm text-slate-600'>{mockHegemonyScore.actor}</p>
@@ -167,7 +167,7 @@ export default function TimeCubeDashboard({
 
         <section className='bg-white border border-tc-line p-8 rounded-xl'>
           <h2 className='text-lg font-semibold mb-4'>Regional Power Reactions</h2>
-          <div className='grid grid-cols-1 xl:grid-cols-2 gap-4'>
+          <div className='grid grid-cols-1 lg:grid-cols-2 gap-4'>
             {mockHegemonyReactions.map((reaction) => (
               <article key={reaction.id} className='border border-slate-200 rounded-lg p-4 space-y-2'>
                 <div className='flex items-center justify-between gap-3'>
@@ -190,7 +190,7 @@ export default function TimeCubeDashboard({
 
         <section className='bg-white border border-tc-line p-8 rounded-xl'>
           <h2 className='text-lg font-semibold mb-4'>Settlement &amp; Resource Pressure</h2>
-          <div className='grid grid-cols-1 xl:grid-cols-2 gap-4'>
+          <div className='grid grid-cols-1 lg:grid-cols-2 gap-4'>
             {mockSettlementPressures.map((pressure) => (
               <article key={pressure.id} className='border border-slate-200 rounded-lg p-4 space-y-2'>
                 <div className='flex items-center justify-between gap-2'>
