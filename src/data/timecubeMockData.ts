@@ -243,7 +243,7 @@ export const mockHegemonyReactions: HegemonyReaction[] = [
     id: 'hr4',
     actor: 'Middle East',
     region: 'Middle East',
-    stance: 'neutral',
+    stance: 'hedging',
     summary: 'Diversifies settlement partners while anchoring energy export optionality to multiple currencies.',
     relevanceScore: 74,
   },
