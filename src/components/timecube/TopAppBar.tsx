@@ -1,0 +1,2 @@
+import { Bell, Menu } from 'lucide-react';
+export default function TopAppBar(){return <header className='bg-tc-bg/80 backdrop-blur-xl border-b border-tc-line sticky top-0 z-50'><div className='flex justify-between items-center w-full px-4 md:px-12 py-4 max-w-[1440px] mx-auto'><span className='text-2xl font-bold'>TimeCube</span><div className='flex gap-2'><button aria-label='Open menu' className='md:hidden p-2'><Menu size={20}/></button><button aria-label='Open notifications' className='p-2 rounded-full'><Bell size={20}/></button></div></div></header>}

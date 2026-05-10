@@ -1,0 +1,2 @@
+import { MapEdge, MapNode } from '../../types/timecube';
+export default function GlobalEventMap({nodes,edges}:{nodes:MapNode[];edges:MapEdge[]}){return <section className='bg-white border border-tc-line p-8 rounded-xl h-[450px]'><div className='relative h-full'>{nodes.map(n=><div key={n.id} className='absolute' style={{top:n.top,left:n.left}} aria-label={`Node ${n.name}`}>•</div>)}<svg className='absolute inset-0 w-full h-full'>{edges.map(e=><path key={e.id} d={e.path} fill='none' stroke='#64748b' strokeDasharray='6 4' strokeWidth='1.5'/>)}</svg></div></section>}

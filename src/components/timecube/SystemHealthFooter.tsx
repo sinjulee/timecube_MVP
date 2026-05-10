@@ -1,0 +1,4 @@
+import { AlertCircle } from 'lucide-react';import { SystemHealth } from '../../types/timecube';
+const circuitLabels={closed:'Closed',open:'Open',half_open:'Half Open'} as const;
+const circuitClasses={closed:'bg-emerald-500 ring-emerald-500/20',open:'bg-rose-500 ring-rose-500/20',half_open:'bg-amber-500 ring-amber-500/20'} as const;
+export default function SystemHealthFooter({healthData}:{healthData:SystemHealth}){const isNotClosed=healthData.circuitBreaker!=='closed';return <footer className='bg-tc-muted border-t border-tc-line p-4'><span className={`w-2.5 h-2.5 inline-block rounded-full ring-4 ${circuitClasses[healthData.circuitBreaker]}`}></span> {circuitLabels[healthData.circuitBreaker]}{isNotClosed&&<div><AlertCircle size={18}/>Affected: {healthData.affected.join(', ')}</div>}</footer>}
