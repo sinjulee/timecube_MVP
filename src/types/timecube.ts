@@ -20,6 +20,7 @@ export interface CorePressure {
   id: string;
   title: string;
   pressureType: 'liquidity' | 'inflation' | 'hegemony' | 'market';
+  targetSection: TimeCubeSection;
   severity: 'low' | 'medium' | 'high';
   summary: string;
 }

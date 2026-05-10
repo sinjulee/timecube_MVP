@@ -36,9 +36,13 @@ const corePressureBadgeStyles: Record<'low' | 'medium' | 'high', string> = {
 
 interface TimeCubeDashboardProps {
   activeSection: TimeCubeSection;
+  onSectionChange: (section: TimeCubeSection) => void;
 }
 
-export default function TimeCubeDashboard({ activeSection }: TimeCubeDashboardProps) {
+export default function TimeCubeDashboard({
+  activeSection,
+  onSectionChange,
+}: TimeCubeDashboardProps) {
   if (activeSection === 'INTELLIGENCE') {
     return (
       <div className='max-w-[1440px] mx-auto space-y-6 pb-12'>
@@ -49,7 +53,11 @@ export default function TimeCubeDashboard({ activeSection }: TimeCubeDashboardPr
           </div>
           <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4'>
             {mockCorePressures.map((pressure) => (
-              <article key={pressure.id} className='border border-slate-200 rounded-lg p-4 space-y-2'>
+              <article
+                key={pressure.id}
+                className='border border-slate-200 rounded-lg p-4 space-y-2 cursor-pointer transition-colors hover:border-slate-300 hover:bg-slate-50'
+                onClick={() => onSectionChange(pressure.targetSection)}
+              >
                 <div className='flex items-center justify-between gap-2'>
                   <p className='text-sm font-medium capitalize text-slate-500'>{pressure.pressureType}</p>
                   <span

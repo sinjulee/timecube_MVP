@@ -20,7 +20,10 @@ export default function App() {
           onSectionChange={setActiveSection}
         />
         <main className='flex-1 p-4 md:p-8'>
-          <TimeCubeDashboard activeSection={activeSection} />
+          <TimeCubeDashboard
+            activeSection={activeSection}
+            onSectionChange={setActiveSection}
+          />
         </main>
       </div>
       <SystemHealthFooter healthData={mockSystemHealth} />
