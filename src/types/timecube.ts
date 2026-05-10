@@ -123,3 +123,20 @@ export interface HegemonyScore {
   score: number;
   trend: string;
 }
+
+export interface HegemonyReaction {
+  id: string;
+  actor: string;
+  region: string;
+  stance: 'defensive' | 'expansive' | 'hedging' | 'neutral';
+  summary: string;
+  relevanceScore: number;
+}
+
+export interface SettlementPressure {
+  id: string;
+  title: string;
+  pressureType: 'energy' | 'treasury' | 'settlement' | 'reserve' | 'stablecoin';
+  severity: 'low' | 'medium' | 'high';
+  summary: string;
+}
