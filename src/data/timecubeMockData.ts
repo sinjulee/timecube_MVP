@@ -23,6 +23,7 @@ import {
   SystemHealth,
   SyncStatus,
   LiquidityMetric,
+  InterpretationQueueItem,
 } from '../types/timecube';
 
 export const mockPipelineStatus: PipelineStatus = {
@@ -206,6 +207,42 @@ export const mockRegionalReactions: RegionalReaction[] = [
   { id: 'rr1', region: 'North America', reaction: 'Risk-on rotation', status: 'up' },
   { id: 'rr2', region: 'Europe', reaction: 'Selective repricing', status: 'flat' },
   { id: 'rr3', region: 'Asia', reaction: 'Defensive hedging', status: 'down' },
+];
+
+
+export const mockInterpretationQueue: InterpretationQueueItem[] = [
+  {
+    id: 'iq1',
+    observedSignal: 'US 2Y yield rose 11bp while DXY gained across sessions',
+    linkedLayer: 'liquidity',
+    possibleCause: 'Funding stress repricing into shorter duration with USD collateral demand spike.',
+    confidence: 79,
+    status: 'analyzing',
+  },
+  {
+    id: 'iq2',
+    observedSignal: 'EU transport CPI sub-index accelerated for a second month',
+    linkedLayer: 'inflation',
+    possibleCause: 'Energy pass-through and wage floor adjustments widening services stickiness.',
+    confidence: 68,
+    status: 'linked',
+  },
+  {
+    id: 'iq3',
+    observedSignal: 'Gulf sovereign statements referenced bilateral settlement pilots',
+    linkedLayer: 'hegemony',
+    possibleCause: 'Reserve diversification strategy testing non-USD invoicing optionality.',
+    confidence: 63,
+    status: 'needs_review',
+  },
+  {
+    id: 'iq4',
+    observedSignal: 'Mega-cap breadth narrowed despite index highs',
+    linkedLayer: 'market',
+    possibleCause: 'Passive flow concentration masking risk appetite deterioration in broader equities.',
+    confidence: 72,
+    status: 'observed',
+  },
 ];
 
 export const mockHegemonyScore: HegemonyScore = {

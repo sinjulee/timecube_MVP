@@ -11,6 +11,7 @@ import {
   mockPipelineStatus,
   mockRecentSignals,
   mockRegionalReactions,
+  mockInterpretationQueue,
   mockRiskAssetFlows,
   mockSettlementPressures,
   mockSyncStatus,
@@ -42,6 +43,18 @@ const stanceBadgeStyles: Record<'defensive' | 'expansive' | 'hedging' | 'neutral
   hedging: 'bg-amber-50 text-amber-700 border-amber-200',
   neutral: 'bg-slate-50 text-slate-700 border-slate-200',
 };
+
+
+const interpretationStatusBadgeStyles: Record<
+  'observed' | 'analyzing' | 'linked' | 'needs_review',
+  string
+> = {
+  observed: 'bg-slate-50 text-slate-700 border-slate-200',
+  analyzing: 'bg-blue-50 text-blue-700 border-blue-200',
+  linked: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+  needs_review: 'bg-amber-50 text-amber-700 border-amber-200',
+};
+
 
 interface TimeCubeDashboardProps {
   activeSection: TimeCubeSection;
@@ -214,6 +227,33 @@ export default function TimeCubeDashboard({
   return (
     <div className='max-w-[1440px] mx-auto space-y-6 pb-12'>
       <RecentSignals signals={mockRecentSignals} />
+
+      <section className='bg-white border border-tc-line p-8 rounded-xl'>
+        <div className='flex items-center justify-between mb-5'>
+          <h2 className='text-lg font-semibold'>Interpretation Queue</h2>
+          <span className='text-xs uppercase tracking-wide text-slate-500'>Signal Log</span>
+        </div>
+        <div className='grid grid-cols-1 lg:grid-cols-2 gap-4'>
+          {mockInterpretationQueue.map((item) => (
+            <article key={item.id} className='border border-slate-200 rounded-lg p-4 space-y-3'>
+              <div className='flex items-start justify-between gap-3'>
+                <p className='font-medium leading-snug'>{item.observedSignal}</p>
+                <span
+                  className={`text-xs px-2 py-1 rounded-full border font-medium capitalize ${interpretationStatusBadgeStyles[item.status]}`}
+                >
+                  {item.status.replace('_', ' ')}
+                </span>
+              </div>
+              <p className='text-sm text-slate-600'>{item.possibleCause}</p>
+              <div className='flex items-center justify-between text-xs text-slate-500'>
+                <span className='uppercase tracking-wide'>Layer: {item.linkedLayer}</span>
+                <span className='font-semibold text-slate-700'>Confidence {item.confidence}%</span>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <section className='bg-white border border-tc-line p-8 rounded-xl'>
         <h2 className='text-lg font-semibold mb-4'>Regional Reactions</h2>
         <div className='space-y-3'>
